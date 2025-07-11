@@ -72,10 +72,6 @@ public class Menu {
                         plaintext[i] = 0;
                     }
 
-                    System.out.println(plaintext);
-                    
-                    System.out.println(Helper.getHistory());
-
                     if (result) {
                         frame.dispose();
                         new Main().main();

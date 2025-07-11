@@ -6,6 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JOptionPane;
 
@@ -22,8 +26,28 @@ public class Encryption {
         this.hash = hash;
     }
 
+    // https://www.geeksforgeeks.org/java/md5-hash-in-java/
     public static String md5(char[] plaintext) {
-        return "";
+
+        try {
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            byte[] messageDigest = md.digest(plaintext.toString().getBytes());
+
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            String hash = no.toString(16);
+
+            while (hash.length() < 32) {
+                hash = "0" + hash;
+            }
+
+            return hash;
+
+        } catch (NoSuchAlgorithmException nsae) {
+            return null; // silently fail
+        }
     }
 
     public void createTestFile() {

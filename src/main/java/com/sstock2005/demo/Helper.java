@@ -47,8 +47,8 @@ public class Helper {
         
 
         Encryption enc = new Encryption(hash);
-
-        // enc.createTestFile();
+        
+        enc.createTestFile();
 
         return true;
     }
